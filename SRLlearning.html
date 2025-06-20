@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習夥伴教你SRL學習策略六步驟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            line-height: 1.6;
+            color: #4a4a4a;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .srl-framework {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .framework-title {
+            background: linear-gradient(45deg, #f7a08a, #f4c2a1);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            color: #8b7355;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, #ffe5d9 0%, #ffd7ba 50%, #ffc9a5 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(255, 201, 165, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 201, 165, 0.4);
+        }
+
+        .step-card.active {
+            background: linear-gradient(135deg, #d4a574 0%, #c49464 100%);
+            color: white;
+        }
+
+        .step-number {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .step-card.active .step-number {
+            background: rgba(255,255,255,1);
+            color: #d4a574;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .step-tags {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .tool-section {
+            background: linear-gradient(135deg, #f4c2a1 0%, #d4a574 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .tool-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tool-description {
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .tool-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .external-link-btn {
+            background: linear-gradient(45deg, #fff, #f8f9fa);
+            color: #d4a574;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+        }
+
+        .external-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+            background: linear-gradient(45deg, #f8f9fa, #fff);
+        }
+
+        .iframe-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .external-tool {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            background: #f5ede4;
+            height: 8px;
+            border-radius: 4px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #f4c2a1, #d4a574);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #f4c2a1, #d4a574);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 165, 116, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #d4a574;
+        }
+
+        .modal h3 {
+            color: #d4a574;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .modal p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #4a4a4a;
+        }
+
+        .modal ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        .modal li {
+            margin-bottom: 8px;
+            color: #5a5a5a;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .external-tool {
+                height: 400px;
+            }
+
+            .modal-content {
+                margin: 10px;
+                padding: 20px;
+                width: 95%;
+            }
+
+            .external-link-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 SRL自我調節學習策略</h1>
+            <p>生成式AI聊天機器人結合自我調節學習之任務與引導</p>
+        </div>
+
+        <div class="main-content">
+            <div class="srl-framework">
+    
+                <div class="subtitle">
+                    透過六個步驟，建立完整的自我調節學習體驗，點選步驟圖卡閱覽詳細說明。
+                </div>
+                <div class="framework-title">
+                    試試看在頁面下方【AskSmile】中查詢問題的認知層次，對LINEBOT學習夥伴提出高認知思考的問題，可獲得更高的分數!
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card active" onclick="openModal(0)">
+                    <div class="step-number">1</div>
+                    <div class="step-title">🎯 目標設定</div>
+                    <div class="step-description">設定難度水平並根據自己的目標選擇測驗問題</div>
+                    <div class="step-tags">Goal setting / Planning and organization</div>
+                </div>
+
+                <div class="step-card" onclick="openModal(1)">
+                    <div class="step-number">2</div>
+                    <div class="step-title">🏠 環境結構</div>
+                    <div class="step-description">觀察你的學習空間，排除干擾（例如安靜環境）</div>
+                    <div class="step-tags">Learning environment optimization</div>
+                </div>
+
+                <div class="step-card" onclick="openModal(2)">
+                    <div class="step-number">3</div>
+                    <div class="step-title">💡 學習策略</div>
+                    <div class="step-description">Ask smile提供提問教學，鼓勵學習者進行高層次認知思考的對話</div>
+                    <div class="step-tags">Higher-order thinking strategies</div>
+                </div>
+
+                <div class="step-card" onclick="openModal(3)">
+                    <div class="step-number">4</div>
+                    <div class="step-title">⏰ 時間管理</div>
+                    <div class="step-description">為今天的任務設定一段時間限制（如25分鐘）</div>
+                    <div class="step-tags">Time management / Pomodoro technique</div>
+                </div>
+
+                <div class="step-card" onclick="openModal(4)">
+                    <div class="step-number">5</div>
+                    <div class="step-title">🤝 尋求協助</div>
+                    <div class="step-description">生成式AI聊天機器人提供即時回饋進行學習與檢視成效</div>
+                    <div class="step-tags">Self-control / Self-observation / Self-monitoring</div>
+                </div>
+
+                <div class="step-card" onclick="openModal(5)">
+                    <div class="step-number">6</div>
+                    <div class="step-title">📊 自我評鑑</div>
+                    <div class="step-description">呈現互動提問積分以及測驗題成績圖表使學習者得以進行自我反思</div>
+                    <div class="step-tags">Self-reaction / Self-evaluation</div>
+                </div>
+            </div>
+
+            <!-- 模態視窗 -->
+            <div id="stepModal" class="modal" onclick="closeModal(event)">
+                <div class="modal-content" onclick="event.stopPropagation()">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div id="modalContent">
+                        <!-- 動態內容將在這裡顯示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-section">
+            <div class="tool-title">🌟 Ask Smile 認知層次查詢</div>
+            <div class="tool-description">
+                這個提問查詢工具將幫助您進行高層次的認知思考對話，隨便鍵入關於Python的問題試試!<br>
+                (若無送出無反應請點選在新視窗開啟Ask Smile)
+            </div>
+            
+            <div class="tool-buttons">
+                <button class="external-link-btn" onclick="openExternalTool()">
+                    🚀 在新視窗開啟 Ask Smile
+                </button>
+            </div>
+
+            <div class="iframe-container">
+                <iframe 
+                    src="https://ask.smile.seedsofempowerment.org/" 
+                    class="external-tool"
+                    title="Ask Smile Learning Tool">
+                </iframe>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const totalSteps = 6;
+
+        // Ask Smile 工具相關功能
+        function openExternalTool() {
+            window.open('https://ask.smile.seedsofempowerment.org/', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+        }
+
+        // 步驟詳細內容數據
+        const stepDetails = [
+            {
+                title: "🎯 目標設定詳細說明",
+                content: `
+                    <p>在開始學習之前，明確設定你的學習目標是成功的關鍵。請考慮以下問題：</p>
+                    <ul>
+                        <li>你希望在這次學習中達成什麼具體目標？</li>
+                        <li>你的當前能力水平如何？</li>
+                        <li>你希望挑戰什麼難度級別的內容？</li>
+                        <li>你將如何衡量學習成果？</li>
+                    </ul>
+                    <p><strong>建議：</strong>使用SMART原則（具體、可測量、可達成、相關、有時限）來設定你的學習目標。</p>
+                `
+            },
+            {
+                title: "🏠 環境結構詳細說明",
+                content: `
+                    <p>良好的學習環境能顯著提升學習效率。請檢查你的學習空間：</p>
+                    <ul>
+                        <li>是否有充足的照明？</li>
+                        <li>周圍是否安靜，沒有干擾？</li>
+                        <li>學習用品是否齊全？</li>
+                        <li>手機等分心物品是否已移除？</li>
+                    </ul>
+                    <p><strong>提示：</strong>創建一個專門的學習區域，每次學習都在同一個地方，有助於建立學習習慣。</p>
+                `
+            },
+            {
+                title: "💡 學習策略詳細說明",
+                content: `
+                    <p>使用Ask Smile工具來提升你的批判性思維和深度學習能力。這個工具將引導你：</p>
+                    <ul>
+                        <li>提出高質量的問題</li>
+                        <li>進行深度思考和分析</li>
+                        <li>建立概念之間的連結</li>
+                        <li>培養元認知技能</li>
+                    </ul>
+                    <p><strong>重點：</strong>專注於理解概念的本質，而非僅記憶表面資訊。</p>
+                `
+            },
+            {
+                title: "⏰ 時間管理詳細說明",
+                content: `
+                    <p>有效的時間管理能幫助你保持專注並避免疲勞。建議使用番茄工作法：</p>
+                    <ul>
+                        <li>設定25分鐘的專注學習時間</li>
+                        <li>學習期間完全專注，避免分心</li>
+                        <li>25分鐘後休息5分鐘</li>
+                        <li>每4個番茄時段後，休息15-30分鐘</li>
+                    </ul>
+                    <p><strong>技巧：</strong>在開始前估算完成任務需要的番茄時段數，有助於更好地規劃時間。</p>
+                `
+            },
+            {
+                title: "🤝 尋求協助詳細說明",
+                content: `
+                    <p>AI聊天機器人可以提供即時的學習支援和回饋。充分利用這個資源：</p>
+                    <ul>
+                        <li>當遇到困難時主動求助</li>
+                        <li>請求解釋複雜概念</li>
+                        <li>要求提供不同的學習角度</li>
+                        <li>獲得即時的學習進度回饋</li>
+                    </ul>
+                    <p><strong>記住：</strong>尋求協助是學習過程的重要部分，不是弱點的表現。</p>
+                `
+            },
+            {
+                title: "📊 自我評鑑詳細說明",
+                content: `
+                    <p>定期反思和評估你的學習過程，這是自我調節學習的核心：</p>
+                    <ul>
+                        <li>檢視你的學習目標達成情況</li>
+                        <li>分析哪些策略最有效</li>
+                        <li>識別需要改進的領域</li>
+                        <li>調整未來的學習計劃</li>
+                    </ul>
+                    <p><strong>反思問題：</strong>我學到了什麼？什麼方法最有效？下次如何改進？</p>
+                `
+            }
+        ];
+
+        function openModal(stepIndex) {
+            const modal = document.getElementById('stepModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h3>${stepDetails[stepIndex].title}</h3>
+                ${stepDetails[stepIndex].content}
+            `;
+            
+            modal.classList.add('show');
+            
+            // 同時更新當前步驟和進度
+            selectStep(stepIndex);
+        }
+
+        function closeModal(event) {
+            const modal = document.getElementById('stepModal');
+            modal.classList.remove('show');
+        }
+
+        function selectStep(stepIndex) {
+            currentStep = stepIndex;
+            updateDisplay();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                currentStep++;
+                updateDisplay();
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            // 更新步驟卡片樣式
+            const cards = document.querySelectorAll('.step-card');
+            cards.forEach((card, index) => {
+                if (index === currentStep) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            // 更新進度條
+            const progress = ((currentStep + 1) / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            // 更新導航按鈕
+            document.getElementById('prevBtn').disabled = currentStep === 0;
+            document.getElementById('nextBtn').disabled = currentStep === totalSteps - 1;
+            
+            if (currentStep === totalSteps - 1) {
+                document.getElementById('nextBtn').textContent = '完成學習 🎉';
+            } else {
+                document.getElementById('nextBtn').textContent = '下一步 ➡️';
+            }
+        }
+
+        // 初始化顯示
+        updateDisplay();
+
+        // 添加鍵盤導航
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                previousStep();
+            } else if (e.key === 'ArrowRight') {
+                nextStep();
+            } else if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // 點擊模態視窗外部關閉
+        window.onclick = function(event) {
+            const modal = document.getElementById('stepModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
